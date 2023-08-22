@@ -11,6 +11,7 @@ const AppRouter = () => {
         <Route key={path} path={path} Component={component} />
       ))}
       <Route path="/login" element={<Navigate to="/" replace />} />
+      <Route path="/sign-up" element={<Navigate to="/" replace />} />
     </Routes>
   ) : (
     <Routes>
