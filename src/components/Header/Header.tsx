@@ -36,33 +36,46 @@ const Header = () => {
           </Link>
           <></>
         </Flex>
-        {isAuth ? (
-          <Flex gap={11} alignItems={"center"}>
-            {isAuth.avatar ? (
-              <ImgAvatar
-                src={isAuth.avatar}
-                alt={isAuth.name && isAuth.name[0]}
-              />
+        {window.location.href.slice(window.location.href.lastIndexOf("/")) !==
+        ("/login" || "/sign-up") ? (
+          <>
+            {isAuth ? (
+              <Flex gap={11} alignItems={"center"}>
+                {isAuth.avatar ? (
+                  <ImgAvatar
+                    src={isAuth.avatar}
+                    alt={isAuth.name && isAuth.name[0]}
+                  />
+                ) : (
+                  <Avatar>{isAuth.name && isAuth.name[0]}</Avatar>
+                )}
+                <Typography>{isAuth.name || "user"}</Typography>
+              </Flex>
             ) : (
-              <Avatar>{isAuth.name && isAuth.name[0]}</Avatar>
+              <Flex gap={29} alignItems={"center"}>
+                <Button
+                  variant={"contained"}
+                  color={"blue"}
+                  onClick={() => {
+                    nav("/sign-up");
+                  }}
+                >
+                  Sign up
+                </Button>
+                <Button
+                  variant={"outlined"}
+                  color={"blue"}
+                  onClick={() => {
+                    nav("/login");
+                  }}
+                >
+                  Login
+                </Button>
+              </Flex>
             )}
-            <Typography>{isAuth.name || "user"}</Typography>
-          </Flex>
+          </>
         ) : (
-          <Flex gap={29} alignItems={"center"}>
-            <Button variant={"contained"} color={"blue"}>
-              Sign up
-            </Button>
-            <Button
-              variant={"outlined"}
-              color={"blue"}
-              onClick={() => {
-                nav("/login");
-              }}
-            >
-              Login
-            </Button>
-          </Flex>
+          <></>
         )}
       </Flex>
     </header>

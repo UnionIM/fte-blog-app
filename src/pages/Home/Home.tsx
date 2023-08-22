@@ -56,7 +56,12 @@ const Home = () => {
             culpa qui officia deserunt mollit anim id est laborum."
           </Typography>
           <Flex gap={11}>
-            <Button variant={"contained"}>Let's start</Button>
+            <Button
+              variant={"contained"}
+              onClick={isAuth ? handleScrollTo : () => {}}
+            >
+              Let's start
+            </Button>
             {isAuth ? (
               <Button variant={"outlined"}>Create new post +</Button>
             ) : (

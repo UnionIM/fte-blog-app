@@ -12,6 +12,7 @@ export interface IButton {
   size: ButtonSize;
   color: TColor;
   sx: Partial<IBaseStyles>;
+  type: "button" | "submit" | "reset";
   onClick: React.MouseEventHandler;
   children: ReactNode;
 }
@@ -23,6 +24,7 @@ const Button: FC<OptionalIButton> = ({
   variant = "text",
   size = "medium",
   children,
+  type,
   onClick,
   sx,
 }) => {
@@ -32,7 +34,8 @@ const Button: FC<OptionalIButton> = ({
       color={color}
       variant={variant}
       size={size}
-      {...sx}
+      type={type}
+      sx={sx}
     >
       {children}
     </StyledButton>
