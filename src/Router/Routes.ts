@@ -1,7 +1,4 @@
-import Login from "../pages/Login/Login";
-import Home from "../pages/Home/Home";
-import Post from "../pages/Post/Post";
-import SignUp from "../pages/SignUp/SignUp";
+import { Login, Home, Post, SignUp } from "../pages";
 
 export const publicRoutes = [
   { path: "/login", component: Login },

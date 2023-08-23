@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Colors } from "../../styles/colors";
+import { Colors } from "../../styles";
 
 export const Avatar = styled.div`
   height: 40px;

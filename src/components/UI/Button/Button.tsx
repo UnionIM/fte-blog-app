@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from "react";
 import { StyledButton } from "./index";
 import { IBaseStyles } from "../../../models/IBaseStyles";
-import { TColor } from "../../../styles/colors";
+import { TColor } from "../../../styles";
 import { TRequiredFields } from "../../../models/TRequiredFields";
 
 export type ButtonSize = "large" | "medium" | "small";

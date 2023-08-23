@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { baseStyles } from "../../baseStyles";
+import { baseStyles } from "../../index";
 import { ITextStyles } from "./Typography";
 import { IBaseStyles } from "../../../models/IBaseStyles";
 

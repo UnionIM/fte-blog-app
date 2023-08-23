@@ -1,16 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import Flex from "../../styles/components/Flex/Flex";
 import img from "../../images/bitmap/home-page-img.png";
-import Typography from "../../styles/components/Typography/Typography";
-import { h1 } from "../../styles/fonts/h1";
-import Button from "../../components/UI/Button/Button";
-import PostList from "../../components/PostList/PostList";
+import { h1, h2, Flex, Typography } from "../../styles";
+import { Button, PostList, Loader } from "../../components";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { TUser } from "../../models/TUser";
 import { StyledImg } from "./index";
 import { postApi } from "../../service/PostService";
-import { h2 } from "../../styles/fonts/h2";
-import Loader from "../../components/UI/Loader/Loader";
 
 const Home = () => {
   const { user } = useAppSelector((state) => state.user);

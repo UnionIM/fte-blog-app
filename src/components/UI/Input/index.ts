@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import { Colors, TColor } from "../../../styles/colors";
-import { baseStyles } from "../../../styles/baseStyles";
+import { Colors, TColor, baseStyles } from "../../../styles";
 import { IBaseStyles } from "../../../models/IBaseStyles";
 
 export const StyledInput = styled.input<{

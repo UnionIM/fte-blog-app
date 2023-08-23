@@ -1,6 +1,6 @@
 import { IBaseStyles } from "../models/IBaseStyles";
 
-export function baseStyles<T>(sx?: Partial<IBaseStyles>) {
+function baseStyles<T>(sx?: Partial<IBaseStyles>) {
   return `
   ${sx?.display ? `display: ${sx?.display}` : ""};
   width: ${sx?.width || "unset"};
@@ -20,3 +20,5 @@ export function baseStyles<T>(sx?: Partial<IBaseStyles>) {
   color: ${sx?.color || ""};
 `;
 }
+
+export default baseStyles;

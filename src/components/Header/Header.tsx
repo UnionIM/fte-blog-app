@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../images/vector/Logo.svg";
-import { logo as logoFontStyle } from "../../styles/fonts/logo";
-import Typography from "../../styles/components/Typography/Typography";
-import Flex from "../../styles/components/Flex/Flex";
-import Button from "../UI/Button/Button";
+import { logo as logoFontStyle, Typography, Flex } from "../../styles";
+import { Button, UserName } from "../";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { Link, useNavigate } from "react-router-dom";
 import { TUser } from "../../models/TUser";
-import UserName from "../UserName/UserName";
 
 const Header = () => {
   const nav = useNavigate();

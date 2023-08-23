@@ -1,7 +1,6 @@
 import { ButtonSize, ButtonVariant } from "./Button";
 import styled from "@emotion/styled";
-import { Colors, DarkColors, TColor } from "../../../styles/colors";
-import { baseStyles } from "../../../styles/baseStyles";
+import { baseStyles, Colors, DarkColors, TColor } from "../../../styles";
 import { IBaseStyles } from "../../../models/IBaseStyles";
 
 export const StyledButton = styled.button<{

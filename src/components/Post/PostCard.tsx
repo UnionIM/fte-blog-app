@@ -1,14 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import React, { FC } from "react";
 import { Card } from "./index";
-import Typography from "../../styles/components/Typography/Typography";
-import { h3 } from "../../styles/fonts/h3";
-import Star from "../../styles/components/Star";
 import Rating from "react-rating";
-import Flex from "../../styles/components/Flex/Flex";
 import { Link } from "react-router-dom";
 import { IPostData } from "../../models/IPost";
-import Box from "../../styles/components/Box/Box";
+import { Box, h3, Star, Flex, Typography } from "../../styles";
 
 interface IPost {
   post: IPostData;

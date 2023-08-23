@@ -1,7 +1,7 @@
 import React from "react";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import Flex from "../../../styles/components/Flex/Flex";
+import { Flex } from "../../../styles";
 
 interface LoaderProps {
   color?: string;

@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { Colors } from "../../../styles/colors";
+import { Colors, baseStyles } from "../../../styles";
 import { IBaseStyles } from "../../../models/IBaseStyles";
-import { baseStyles } from "../../../styles/baseStyles";
 
 export const StyledAlert = styled.div<{
   sx?: Partial<IBaseStyles>;

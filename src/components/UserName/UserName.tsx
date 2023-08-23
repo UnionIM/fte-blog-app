@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { Avatar, ImgAvatar } from "../Header";
-import Typography from "../../styles/components/Typography/Typography";
-import Flex from "../../styles/components/Flex/Flex";
+import { Typography, Flex } from "../../styles";
 import { IBaseStyles } from "../../models/IBaseStyles";
 import { TUser } from "../../models/TUser";
 

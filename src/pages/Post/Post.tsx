@@ -1,18 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { postApi } from "../../service/PostService";
-import Loader from "../../components/UI/Loader/Loader";
-import { Colors } from "../../styles/colors";
+import { Loader, UserName, Alert } from "../../components";
+import { Star, Colors, Flex, Box, Typography, h3 } from "../../styles";
 import { errorHandler } from "../../service/utils/errorHandler";
-import Flex from "../../styles/components/Flex/Flex";
-import Box from "../../styles/components/Box/Box";
-import Typography from "../../styles/components/Typography/Typography";
-import { h3 } from "../../styles/fonts/h3";
-import UserName from "../../components/UserName/UserName";
 import dayjs from "dayjs";
-import Star from "../../styles/components/Star";
 import Rating from "react-rating";
-import Alert from "../../components/UI/Alert/Alert";
 
 const Post = () => {
   const { postId } = useParams();

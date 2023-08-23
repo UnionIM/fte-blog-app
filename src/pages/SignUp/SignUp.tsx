@@ -1,12 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import { authApi } from "../../service/AuthService";
-import Box from "../../styles/components/Box/Box";
-import Typography from "../../styles/components/Typography/Typography";
-import { h2 } from "../../styles/fonts/h2";
-import Input from "../../components/UI/Input/Input";
-import Button from "../../components/UI/Button/Button";
-import Loader from "../../components/UI/Loader/Loader";
-import Alert from "../../components/UI/Alert/Alert";
+import { h2, Box, Typography } from "../../styles";
+import { Input, Button, Loader, Alert } from "../../components";
 import { errorHandler } from "../../service/utils/errorHandler";
 
 const SignUp = () => {

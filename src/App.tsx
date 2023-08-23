@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./components/Header/Header";
+import { Header } from "./components";
 import { css, Global } from "@emotion/react";
 import { stylesReset } from "./styles/stylesReset";
 import AppRouter from "./Router/AppRouter";

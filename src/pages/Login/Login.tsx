@@ -1,13 +1,8 @@
 import React, { FormEvent, useState } from "react";
-import Typography from "../../styles/components/Typography/Typography";
-import Input from "../../components/UI/Input/Input";
-import Button from "../../components/UI/Button/Button";
-import { h2 } from "../../styles/fonts/h2";
-import Box from "../../styles/components/Box/Box";
+import { Input, Button, Loader, Alert } from "../../components";
+import { h2, Typography, Box } from "../../styles";
 import { authApi } from "../../service/AuthService";
-import Loader from "../../components/UI/Loader/Loader";
 import { errorHandler } from "../../service/utils/errorHandler";
-import Alert from "../../components/UI/Alert/Alert";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
