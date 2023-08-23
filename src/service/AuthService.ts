@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { TUser } from "../models/TUser";
+import { userSlice } from "../store/reducers/UserSlicer";
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -16,6 +17,15 @@ export const authApi = createApi({
         method: "POST",
         body,
       }),
+      onQueryStarted: async (body, { dispatch, queryFulfilled }) => {
+        try {
+          const userData = (await queryFulfilled).data;
+          localStorage.setItem("accessToken", userData.accessToken);
+          dispatch(userSlice.actions.setUser(userData.user));
+        } catch (e) {
+          console.log(e);
+        }
+      },
     }),
     signUp: build.mutation<
       { user: TUser; accessToken: string },
@@ -26,6 +36,15 @@ export const authApi = createApi({
         method: "POST",
         body,
       }),
+      onQueryStarted: async (body, { dispatch, queryFulfilled }) => {
+        try {
+          const userData = (await queryFulfilled).data;
+          localStorage.setItem("accessToken", userData.accessToken);
+          dispatch(userSlice.actions.setUser(userData.user));
+        } catch (e) {
+          console.log(e);
+        }
+      },
     }),
   }),
 });
