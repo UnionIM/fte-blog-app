@@ -12,5 +12,10 @@ export const postApi = createApi({
         url: `/all`,
       }),
     }),
+    getPost: build.query<IPostData, string>({
+      query: (id) => ({
+        url: `/${id}`,
+      }),
+    }),
   }),
 });
