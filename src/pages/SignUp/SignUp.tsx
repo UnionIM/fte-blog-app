@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { authApi } from "../../service/AuthService";
 import Box from "../../styles/components/Box/Box";
 import Typography from "../../styles/components/Typography/Typography";
@@ -6,31 +6,19 @@ import { h2 } from "../../styles/fonts/h2";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import Loader from "../../components/UI/Loader/Loader";
-import { userSlice } from "../../store/reducers/UserSlicer";
-import { useAppDispatch } from "../../hooks/useAppDispatch";
 import Alert from "../../components/UI/Alert/Alert";
-import { errorHandler } from "../../service/errorHandler";
+import { errorHandler } from "../../service/utils/errorHandler";
 
 const SignUp = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [mutation, { data, isLoading, error }] = authApi.useSignUpMutation();
-
-  const { setUser } = userSlice.actions;
-  const dispatch = useAppDispatch();
+  const [mutation, { isLoading, error }] = authApi.useSignUpMutation();
 
   const handleLoginSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await mutation({ email, password, name });
   };
-
-  useEffect(() => {
-    if (data) {
-      localStorage.setItem("accessToken", data.accessToken);
-      dispatch(setUser(data.user));
-    }
-  }, [data]);
 
   return (
     <Box
@@ -45,7 +33,7 @@ const SignUp = () => {
         styles={h2}
         sx={{ margin: "0 0 50px 0", textAlign: "center" }}
       >
-        Welcome back
+        Welcome!
       </Typography>
       <form onSubmit={handleLoginSubmit}>
         <Input
