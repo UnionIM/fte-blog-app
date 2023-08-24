@@ -21,6 +21,7 @@ export const StyledButton = styled.button<{
   font-size: ${({ size }) => fontSize(size)};
   ${({ sx }) => baseStyles(sx)};
   text-align: ${({ sx }) => sx?.textAlign || "center"};
+  cursor: pointer;
   &:hover {
     border-color: ${({ variant, color }) =>
       variant !== "text" && DarkColors[color || "blue"]};

@@ -16,7 +16,7 @@ export interface ITextStyles {
 interface ITypography {
   styles: Partial<ITextStyles>;
   sx: Partial<IBaseStyles>;
-  children: string;
+  children: string | string[];
 }
 
 type OptionalITypography = TRequiredFields<ITypography, "children">;

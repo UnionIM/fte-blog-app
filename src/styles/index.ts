@@ -8,6 +8,7 @@ export { h1 } from "./fonts/h1";
 export { h2 } from "./fonts/h2";
 export { h3 } from "./fonts/h3";
 export { logo } from "./fonts/logo";
+export { smallGray } from "./fonts/smallGray";
 
 export { default as baseStyles } from "./baseStyles";
 
