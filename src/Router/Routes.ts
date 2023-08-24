@@ -1,10 +1,15 @@
 import { Login, Home, Post, SignUp } from "../pages";
 
-export const publicRoutes = [
-  { path: "/login", component: Login },
-  { path: "/sign-up", component: SignUp },
+const routesWithoutLogin = [
   { path: "/", component: Home },
   { path: `/posts/:postId`, component: Post },
 ];
 
-export const privateRoutes = [{ path: "/", component: Home }];
+const loginSignUp = [
+  { path: "/login", component: Login },
+  { path: "/sign-up", component: SignUp },
+];
+
+export const publicRoutes = [...routesWithoutLogin, ...loginSignUp];
+
+export const privateRoutes = [...routesWithoutLogin];
