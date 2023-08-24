@@ -7,10 +7,11 @@ import React, {
 } from "react";
 import Modal from "../UI/Modal/Modal";
 import { IPostData } from "../../models/IPost";
-import { Button, Input, Loader } from "../";
+import { Alert, Button, Input, Loader } from "../";
 import { Flex, h3, smallGray, Typography } from "../../styles";
 import DropZone from "../DropZone/DropZone";
 import { postApi } from "../../service/PostService";
+import { errorHandler } from "../../service/utils/errorHandler";
 
 interface IEditPost {
   postToEdit: IPostData;
@@ -71,6 +72,12 @@ const EditPost: FC<IEditPost> = ({ postToEdit, setIsModalOpen }) => {
           rows={4}
           value={description}
         />
+        {error && (
+          <Alert
+            sx={{ margin: "18px 0 0 0" }}
+            message={errorHandler(error)?.message || "Unknown message"}
+          />
+        )}
         <Flex
           sx={{ margin: "18px 0 0 0" }}
           gap={10}

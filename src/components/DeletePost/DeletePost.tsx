@@ -2,8 +2,9 @@ import React, { Dispatch, FC, SetStateAction } from "react";
 import Modal from "../UI/Modal/Modal";
 import { useNavigate } from "react-router-dom";
 import { Colors, Flex, h3, Typography } from "../../styles";
-import { Button, Loader } from "../index";
+import { Alert, Button, Loader } from "../index";
 import { postApi } from "../../service/PostService";
+import { errorHandler } from "../../service/utils/errorHandler";
 
 interface IDeletePost {
   postTitle: string;
@@ -16,8 +17,8 @@ const DeletePost: FC<IDeletePost> = ({ postId, postTitle, setIsModalOpen }) => {
   const [mutation, { isLoading, error }] = postApi.useDeletePostMutation();
 
   const deleteHandler = async () => {
-    await mutation({ postId });
-    if (!error) {
+    const response = await mutation({ postId });
+    if (!("error" in response)) {
       nav("/");
     }
   };
@@ -34,6 +35,12 @@ const DeletePost: FC<IDeletePost> = ({ postId, postTitle, setIsModalOpen }) => {
       <Typography sx={{ margin: "40px 0", textAlign: "center" }}>
         Are you sure you want to delete post "{postTitle}"?
       </Typography>
+      {error && (
+        <Alert
+          sx={{ margin: "0 0 40px 0" }}
+          message={errorHandler(error)?.message || "Unknown message"}
+        />
+      )}
       <Flex justifyContent={"center"} gap={10}>
         <Button variant={"outlined"} color={"red"} onClick={closeModal}>
           Cancel
