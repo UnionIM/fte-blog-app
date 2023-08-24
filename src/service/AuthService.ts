@@ -46,5 +46,21 @@ export const authApi = createApi({
         }
       },
     }),
+    isValid: build.query<{ user: TUser; accessToken: string }, string>({
+      query: (accessToken) => ({
+        url: `/user`,
+        params: {
+          accessToken: accessToken,
+        },
+      }),
+      onQueryStarted: async (body, { dispatch, queryFulfilled }) => {
+        try {
+          const userData = (await queryFulfilled).data;
+          dispatch(userSlice.actions.setUser(userData.user));
+        } catch (e) {
+          console.log(e);
+        }
+      },
+    }),
   }),
 });
