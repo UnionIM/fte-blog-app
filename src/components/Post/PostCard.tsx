@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { FC } from "react";
-import { Card } from "./index";
+import { Card } from "./styled";
 import Typography from "../../styles/components/Typography/Typography";
 import { h3 } from "../../styles/fonts/h3";
 import Star from "../../styles/components/Star";
