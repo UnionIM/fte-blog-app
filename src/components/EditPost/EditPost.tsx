@@ -19,7 +19,7 @@ interface IEditPost {
 }
 
 const EditPost: FC<IEditPost> = ({ postToEdit, setIsModalOpen }) => {
-  const [file, setFile] = useState<{ name: string; preview: string }[]>([]);
+  const [file, setFile] = useState<Blob[]>([]);
   const [title, setTitle] = useState<string>(postToEdit.title);
   const [description, setDescription] = useState<string>(
     postToEdit.description,

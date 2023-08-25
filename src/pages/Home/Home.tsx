@@ -6,6 +6,7 @@ import { useAppSelector } from "../../hooks/useAppSelector";
 import { TUser } from "../../models/TUser";
 import { StyledImg } from "./index";
 import { postApi } from "../../service/PostService";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { user } = useAppSelector((state) => state.user);
@@ -58,7 +59,9 @@ const Home = () => {
               Let's start
             </Button>
             {isAuth ? (
-              <Button variant={"outlined"}>Create new post +</Button>
+              <Link to={"/posts/create"}>
+                <Button variant={"outlined"}>Create new post +</Button>
+              </Link>
             ) : (
               <Button variant={"outlined"} onClick={handleScrollTo}>
                 Posts
