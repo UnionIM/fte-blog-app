@@ -6,19 +6,35 @@ export const postApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_API_URL}/post`,
   }),
-  tagTypes: ["Post", "PostDel"],
+  tagTypes: ["Post", "PostListUpdate"],
   endpoints: (build) => ({
     fetchPosts: build.query<IPostData[], number>({
       query: () => ({
         url: `/all`,
       }),
-      providesTags: () => ["PostDel"],
+      providesTags: () => ["PostListUpdate"],
     }),
     getPost: build.query<IPostData, string>({
       query: (id) => ({
         url: `/${id}`,
       }),
       providesTags: () => ["Post"],
+    }),
+    createPost: build.mutation<
+      IPostData,
+      {
+        authorId: string;
+        title: string;
+        description: string;
+        image: Blob;
+      }
+    >({
+      query: (body) => ({
+        url: ``,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["PostListUpdate"],
     }),
     updatePost: build.mutation<
       IPostData,
@@ -41,7 +57,7 @@ export const postApi = createApi({
         url: `/${postId}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["PostDel"],
+      invalidatesTags: ["PostListUpdate"],
     }),
   }),
 });
