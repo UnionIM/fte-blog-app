@@ -18,6 +18,7 @@ const AppRouter = () => {
       {publicRoutes.map(({ path, component }) => (
         <Route key={path} path={path} Component={component} />
       ))}
+      <Route path="/posts/create" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };
