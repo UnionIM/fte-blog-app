@@ -8,11 +8,8 @@ export const postApi = createApi({
   }),
   endpoints: (build) => ({
     fetchPosts: build.query<IPostData[], number>({
-      query: (_limit: number = 5) => ({
+      query: () => ({
         url: `/all`,
-        params: {
-          _limit,
-        },
       }),
     }),
   }),
