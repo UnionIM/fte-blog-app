@@ -1,5 +1,5 @@
 import React from "react";
-import Flex from "../../../styles/components/Flex/Flex";
+import { Flex } from "../../../styles";
 import { RingLoader } from "./styled";
 
 interface LoaderProps {

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, Dispatch, FC, SetStateAction } from "react";
 import { StyledInput } from "./index";
-import { TColor } from "../../../styles/colors";
+import { TColor } from "../../../styles";
 import { TRequiredFields } from "../../../models/TRequiredFields";
 import { IBaseStyles } from "../../../models/IBaseStyles";
 

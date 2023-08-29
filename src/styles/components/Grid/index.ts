@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { TAlignItems, TJustifyContent } from "../../StylesTypes";
 import { IBaseStyles } from "../../../models/IBaseStyles";
-import { baseStyles } from "../../baseStyles";
+import { baseStyles } from "../../index";
 
 export const StyledGrid = styled.div<
   Partial<{

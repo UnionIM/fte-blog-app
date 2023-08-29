@@ -1,15 +1,10 @@
 import React from "react";
-import Flex from "../../styles/components/Flex/Flex";
 import img from "../../images/bitmap/home-page-img.png";
-import Typography from "../../styles/components/Typography/Typography";
-import { h1 } from "../../styles/fonts/h1";
-import Button from "../../components/UI/Button/Button";
-import PostList from "../../components/PostList/PostList";
+import { h1, h2, Flex, Typography } from "../../styles";
+import { Button, PostList, Loader } from "../../components";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { StyledImg } from "./index";
 import { postApi } from "../../service/PostService";
-import { h2 } from "../../styles/fonts/h2";
-import Loader from "../../components/UI/Loader/Loader";
 
 const Home = () => {
   const { user } = useAppSelector((state) => state.user);
@@ -48,7 +43,12 @@ const Home = () => {
             culpa qui officia deserunt mollit anim id est laborum."
           </Typography>
           <Flex gap={11}>
-            <Button variant={"contained"}>Let's start</Button>
+            <Button
+              variant={"contained"}
+              onClick={user.isAuth ? handleScrollTo : () => {}}
+            >
+              Let's start
+            </Button>
             {user.isAuth ? (
               <Button variant={"outlined"}>Create new post +</Button>
             ) : (

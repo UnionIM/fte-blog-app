@@ -1,9 +1,7 @@
 import React, { ComponentPropsWithoutRef, FC, ForwardedRef } from "react";
-import Typography from "../../styles/components/Typography/Typography";
-import PostCard from "../Post/PostCard";
-import Grid from "../../styles/components/Grid/Grid";
+import { PostCard } from "../";
 import { IPostData } from "../../models/IPost";
-import { h3 } from "../../styles/fonts/h3";
+import { h3, Typography, Grid } from "../../styles";
 
 interface IPosts extends ComponentPropsWithoutRef<"div"> {
   posts: IPostData[];

@@ -1,11 +1,8 @@
 import React from "react";
 import logo from "../../images/vector/Logo.svg";
-import { logo as logoFontStyle } from "../../styles/fonts/logo";
-import Typography from "../../styles/components/Typography/Typography";
-import Flex from "../../styles/components/Flex/Flex";
-import Button from "../UI/Button/Button";
+import { logo as logoFontStyle, Typography, Flex } from "../../styles";
+import { Button, UserName } from "../";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { Avatar, ImgAvatar } from "./index";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -27,30 +24,36 @@ const Header = () => {
             </Flex>
           </Link>
         </Flex>
-        {user.isAuth ? (
-          <Flex gap={11} alignItems={"center"}>
-            {user.avatar ? (
-              <ImgAvatar src={user.avatar} alt={user.name && user.name[0]} />
+        {window.location.href.slice(window.location.href.lastIndexOf("/")) !==
+        ("/login" || "/sign-up") ? (
+          <>
+            {user.isAuth ? (
+              <UserName user={user} />
             ) : (
-              <Avatar>{user.name && user.name[0]}</Avatar>
+              <Flex gap={29} alignItems={"center"}>
+                <Button
+                  variant={"contained"}
+                  color={"blue"}
+                  onClick={() => {
+                    nav("/sign-up");
+                  }}
+                >
+                  Sign up
+                </Button>
+                <Button
+                  variant={"outlined"}
+                  color={"blue"}
+                  onClick={() => {
+                    nav("/login");
+                  }}
+                >
+                  Login
+                </Button>
+              </Flex>
             )}
-            <Typography>{user.name || "user"}</Typography>
-          </Flex>
+          </>
         ) : (
-          <Flex gap={29} alignItems={"center"}>
-            <Button variant={"contained"} color={"blue"}>
-              Sign up
-            </Button>
-            <Button
-              variant={"outlined"}
-              color={"blue"}
-              onClick={() => {
-                nav("/login");
-              }}
-            >
-              Login
-            </Button>
-          </Flex>
+          <></>
         )}
       </Flex>
     </header>
