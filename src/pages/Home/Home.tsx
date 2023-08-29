@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import Flex from "../../styles/components/Flex/Flex";
 import img from "../../images/bitmap/home-page-img.png";
 import Typography from "../../styles/components/Typography/Typography";
@@ -6,7 +6,6 @@ import { h1 } from "../../styles/fonts/h1";
 import Button from "../../components/UI/Button/Button";
 import PostList from "../../components/PostList/PostList";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { TUser } from "../../models/TUser";
 import { StyledImg } from "./index";
 import { postApi } from "../../service/PostService";
 import { h2 } from "../../styles/fonts/h2";
@@ -14,16 +13,9 @@ import Loader from "../../components/UI/Loader/Loader";
 
 const Home = () => {
   const { user } = useAppSelector((state) => state.user);
-  const elementToScroll = useRef<HTMLDivElement>(null);
-  const [isAuth, setIsAuth] = useState<TUser | false>(false);
+  const elementToScroll = React.createRef<HTMLDivElement>();
 
   const { data: posts, isLoading } = postApi.useFetchPostsQuery(4);
-
-  useEffect(() => {
-    if (Object.values(user).length) {
-      setIsAuth(user);
-    }
-  }, [user]);
 
   const handleScrollTo = () => {
     if (elementToScroll) {
@@ -39,7 +31,7 @@ const Home = () => {
       >
         <div>
           <Typography styles={h1}>
-            {isAuth
+            {user.isAuth
               ? "Are you ready to read something new?"
               : "Welcome to BlogApp!"}
           </Typography>
@@ -56,13 +48,8 @@ const Home = () => {
             culpa qui officia deserunt mollit anim id est laborum."
           </Typography>
           <Flex gap={11}>
-            <Button
-              variant={"contained"}
-              onClick={isAuth ? handleScrollTo : () => {}}
-            >
-              Let's start
-            </Button>
-            {isAuth ? (
+            <Button variant={"contained"}>Let's start</Button>
+            {user.isAuth ? (
               <Button variant={"outlined"}>Create new post +</Button>
             ) : (
               <Button variant={"outlined"} onClick={handleScrollTo}>
@@ -80,7 +67,7 @@ const Home = () => {
         Posts
       </Typography>
       {isLoading && <Loader />}
-      {posts && <PostList posts={posts} elementRef={elementToScroll} />}
+      {posts && <PostList posts={posts} ref={elementToScroll} />}
     </div>
   );
 };

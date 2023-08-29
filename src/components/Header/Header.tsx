@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import logo from "../../images/vector/Logo.svg";
 import { logo as logoFontStyle } from "../../styles/fonts/logo";
 import Typography from "../../styles/components/Typography/Typography";
@@ -7,18 +7,10 @@ import Button from "../UI/Button/Button";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { Avatar, ImgAvatar } from "./index";
 import { Link, useNavigate } from "react-router-dom";
-import { TUser } from "../../models/TUser";
 
 const Header = () => {
   const nav = useNavigate();
   const { user } = useAppSelector((state) => state.user);
-  const [isAuth, setIsAuth] = useState<TUser | false>(false);
-
-  useEffect(() => {
-    if (Object.values(user).length) {
-      setIsAuth(user);
-    }
-  }, [user]);
 
   return (
     <header>
@@ -34,48 +26,31 @@ const Header = () => {
               <Typography styles={logoFontStyle}>Blog App</Typography>
             </Flex>
           </Link>
-          <></>
         </Flex>
-        {window.location.href.slice(window.location.href.lastIndexOf("/")) !==
-        ("/login" || "/sign-up") ? (
-          <>
-            {isAuth ? (
-              <Flex gap={11} alignItems={"center"}>
-                {isAuth.avatar ? (
-                  <ImgAvatar
-                    src={isAuth.avatar}
-                    alt={isAuth.name && isAuth.name[0]}
-                  />
-                ) : (
-                  <Avatar>{isAuth.name && isAuth.name[0]}</Avatar>
-                )}
-                <Typography>{isAuth.name || "user"}</Typography>
-              </Flex>
+        {user.isAuth ? (
+          <Flex gap={11} alignItems={"center"}>
+            {user.avatar ? (
+              <ImgAvatar src={user.avatar} alt={user.name && user.name[0]} />
             ) : (
-              <Flex gap={29} alignItems={"center"}>
-                <Button
-                  variant={"contained"}
-                  color={"blue"}
-                  onClick={() => {
-                    nav("/sign-up");
-                  }}
-                >
-                  Sign up
-                </Button>
-                <Button
-                  variant={"outlined"}
-                  color={"blue"}
-                  onClick={() => {
-                    nav("/login");
-                  }}
-                >
-                  Login
-                </Button>
-              </Flex>
+              <Avatar>{user.name && user.name[0]}</Avatar>
             )}
-          </>
+            <Typography>{user.name || "user"}</Typography>
+          </Flex>
         ) : (
-          <></>
+          <Flex gap={29} alignItems={"center"}>
+            <Button variant={"contained"} color={"blue"}>
+              Sign up
+            </Button>
+            <Button
+              variant={"outlined"}
+              color={"blue"}
+              onClick={() => {
+                nav("/login");
+              }}
+            >
+              Login
+            </Button>
+          </Flex>
         )}
       </Flex>
     </header>
