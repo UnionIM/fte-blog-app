@@ -5,6 +5,7 @@ import { Button, Input, Loader } from "../../components";
 import { postApi } from "../../service/PostService";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useNavigate } from "react-router-dom";
+import { getBase64 } from "../../service/utils/getBase64";
 
 const CreatePost = () => {
   const [file, setFile] = useState<Blob[]>([]);
@@ -18,11 +19,12 @@ const CreatePost = () => {
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (user.id) {
+      const base64 = await getBase64(file[0]);
       await mutation({
         title,
         description,
         authorId: user.id,
-        image: file[0],
+        image: typeof base64 === "string" ? base64 : null,
       });
     }
     nav("/");

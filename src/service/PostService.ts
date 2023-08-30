@@ -26,7 +26,7 @@ export const postApi = createApi({
         authorId: string;
         title: string;
         description: string;
-        image: Blob;
+        image: string | null;
       }
     >({
       query: (body) => ({
@@ -41,6 +41,7 @@ export const postApi = createApi({
       Partial<{
         postId: string;
         authorId: string;
+        image: string | null;
         title: string;
         description: string;
       }>

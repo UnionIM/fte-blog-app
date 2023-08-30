@@ -48,12 +48,9 @@ const Post = () => {
           <Flex gap={20}>
             {post.image ? (
               <img
-                src={post.image}
+                src={`${process.env.REACT_APP_API_URL}/static${post.image}`}
                 alt={post.id}
-                style={{
-                  width: "100%",
-                  height: "200px",
-                }}
+                style={{ maxHeight: "300px" }}
               />
             ) : (
               <Box
