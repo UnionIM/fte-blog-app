@@ -7,11 +7,10 @@ import {
   StyledImgWrapper,
   StyledSelect,
 } from "./index";
-import { IFile } from "../../models/IFile";
 
 interface IDropZone {
-  file: IFile[];
-  setFile: Dispatch<SetStateAction<IFile[]>>;
+  file: Blob[];
+  setFile: Dispatch<SetStateAction<Blob[]>>;
   img?: string;
 }
 
@@ -21,20 +20,18 @@ const DropZone: FC<IDropZone> = ({ file, setFile, img }) => {
       "image/*": [".jpeg", ".png", ".jpg"],
     },
     onDrop: (acceptedFiles) => {
-      setFile(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          }),
-        ),
-      );
+      setFile(acceptedFiles.map((file) => file));
     },
   });
 
   const images = file.map((file) => (
-    <div key={file.name}>
+    <div key={URL.createObjectURL(file)}>
       <div>
-        <img src={file.preview} style={{ height: "200px" }} alt="prev" />
+        <img
+          src={URL.createObjectURL(file)}
+          style={{ maxWidth: "390px" }}
+          alt="prev"
+        />
       </div>
     </div>
   ));

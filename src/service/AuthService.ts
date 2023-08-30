@@ -1,12 +1,11 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { TUser } from "../models/TUser";
 import { userSlice } from "../store/reducers/UserSlicer";
+import { adminFetchBaseQuery } from "./index";
 
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.REACT_APP_API_URL}/auth`,
-  }),
+  baseQuery: adminFetchBaseQuery,
   endpoints: (build) => ({
     login: build.mutation<
       { user: TUser; accessToken: string },

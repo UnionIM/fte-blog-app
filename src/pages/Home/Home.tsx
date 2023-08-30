@@ -5,6 +5,7 @@ import { Button, PostList, Loader } from "../../components";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { StyledImg } from "./index";
 import { postApi } from "../../service/PostService";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { user } = useAppSelector((state) => state.user);
@@ -50,7 +51,9 @@ const Home = () => {
               Let's start
             </Button>
             {user.isAuth ? (
-              <Button variant={"outlined"}>Create new post +</Button>
+              <Link to={"/posts/create"}>
+                <Button variant={"outlined"}>Create new post +</Button>
+              </Link>
             ) : (
               <Button variant={"outlined"} onClick={handleScrollTo}>
                 Posts

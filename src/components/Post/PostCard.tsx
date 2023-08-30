@@ -15,7 +15,7 @@ const PostCard: FC<IPost> = ({ post }) => {
     <Card>
       {post.image ? (
         <img
-          src={post.image}
+          src={`${process.env.REACT_APP_API_URL}/static${post.image}`}
           alt={post.id}
           style={{
             width: "100%",

@@ -12,6 +12,7 @@ import { Flex, h3, smallGray, Typography } from "../../styles";
 import DropZone from "../DropZone/DropZone";
 import { postApi } from "../../service/PostService";
 import { errorHandler } from "../../service/utils/errorHandler";
+import { getBase64 } from "../../service/utils/getBase64";
 
 interface IEditPost {
   postToEdit: IPostData;
@@ -19,20 +20,21 @@ interface IEditPost {
 }
 
 const EditPost: FC<IEditPost> = ({ postToEdit, setIsModalOpen }) => {
-  const [file, setFile] = useState<{ name: string; preview: string }[]>([]);
+  const [file, setFile] = useState<Blob[]>([]);
   const [title, setTitle] = useState<string>(postToEdit.title);
   const [description, setDescription] = useState<string>(
     postToEdit.description,
   );
 
   const [mutation, { isLoading, error }] = postApi.useUpdatePostMutation();
-
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    const base64 = await getBase64(file[0]);
     await mutation({
       postId: postToEdit.id,
       title: title,
       description: description,
+      image: typeof base64 === "string" ? base64 : null,
       authorId: postToEdit.author.id,
     });
   };
