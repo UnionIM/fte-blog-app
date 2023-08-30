@@ -1,16 +1,16 @@
-import React, { FC, RefObject } from "react";
+import React, { ComponentPropsWithoutRef, FC, ForwardedRef } from "react";
 import { PostCard } from "../";
 import { IPostData } from "../../models/IPost";
 import { h3, Typography, Grid } from "../../styles";
 
-interface IPosts {
+interface IPosts extends ComponentPropsWithoutRef<"div"> {
   posts: IPostData[];
-  elementRef: RefObject<HTMLDivElement>;
+  ref: ForwardedRef<HTMLDivElement>;
 }
 
-const PostList: FC<IPosts> = ({ posts, elementRef }) => {
+const PostList: FC<IPosts> = React.forwardRef(({ posts }, ref) => {
   return (
-    <div ref={elementRef} style={{ padding: "0 30px 30px" }}>
+    <div ref={ref} style={{ padding: "0 30px 30px" }}>
       <Grid
         gap={20}
         gridTemplateColumns={"repeat(auto-fit, minmax(12rem, 23rem))"}
@@ -26,6 +26,6 @@ const PostList: FC<IPosts> = ({ posts, elementRef }) => {
       </Grid>
     </div>
   );
-};
+});
 
 export default PostList;

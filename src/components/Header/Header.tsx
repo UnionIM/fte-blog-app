@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import logo from "../../images/vector/Logo.svg";
 import { logo as logoFontStyle, Typography, Flex } from "../../styles";
 import { Button, UserName } from "../";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { Link, useNavigate } from "react-router-dom";
-import { TUser } from "../../models/TUser";
 
 const Header = () => {
   const nav = useNavigate();
   const { user } = useAppSelector((state) => state.user);
-  const [isAuth, setIsAuth] = useState<TUser | false>(false);
-
-  useEffect(() => {
-    if (Object.values(user).length) {
-      setIsAuth(user);
-    }
-  }, [user]);
 
   return (
     <header>
@@ -31,13 +23,12 @@ const Header = () => {
               <Typography styles={logoFontStyle}>Blog App</Typography>
             </Flex>
           </Link>
-          <></>
         </Flex>
         {window.location.href.slice(window.location.href.lastIndexOf("/")) !==
         ("/login" || "/sign-up") ? (
           <>
-            {isAuth ? (
-              <UserName user={isAuth} />
+            {user.isAuth ? (
+              <UserName user={user} />
             ) : (
               <Flex gap={29} alignItems={"center"}>
                 <Button

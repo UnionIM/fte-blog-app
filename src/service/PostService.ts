@@ -6,13 +6,13 @@ export const postApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_API_URL}/post`,
   }),
-  tagTypes: ["Post", "PostDel"],
+  tagTypes: ["Post", "Posts"],
   endpoints: (build) => ({
     fetchPosts: build.query<IPostData[], number>({
       query: () => ({
         url: `/all`,
       }),
-      providesTags: () => ["PostDel"],
+      providesTags: () => ["Posts"],
     }),
     getPost: build.query<IPostData, string>({
       query: (id) => ({
@@ -41,7 +41,7 @@ export const postApi = createApi({
         url: `/${postId}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["PostDel"],
+      invalidatesTags: ["Posts"],
     }),
   }),
 });
