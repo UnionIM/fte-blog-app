@@ -5,7 +5,7 @@ import { privateRoutes, publicRoutes } from "./Routes";
 
 const AppRouter = () => {
   const { user } = useAppSelector((state) => state.user);
-  return Object.values(user).length ? (
+  return user.isAuth ? (
     <Routes>
       {privateRoutes.map(({ path, component }) => (
         <Route key={path} path={path} Component={component} />

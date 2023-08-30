@@ -9,6 +9,7 @@ export const StyledDropZone = styled.div<{ isDragActive: boolean }>`
   height: 400px;
   margin: 0 auto;
   border: 4px dashed ${Colors.gray};
+  cursor: pointer;
   ${({ isDragActive }) =>
     isDragActive ? "background: rgba(0, 0, 0, 0.1);" : ""}
 `;

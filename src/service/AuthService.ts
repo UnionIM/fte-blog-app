@@ -21,7 +21,9 @@ export const authApi = createApi({
         try {
           const userData = (await queryFulfilled).data;
           localStorage.setItem("accessToken", userData.accessToken);
-          dispatch(userSlice.actions.setUser(userData.user));
+          dispatch(
+            userSlice.actions.setUser({ ...userData.user, isAuth: true }),
+          );
         } catch (e) {
           console.log(e);
         }
@@ -40,7 +42,9 @@ export const authApi = createApi({
         try {
           const userData = (await queryFulfilled).data;
           localStorage.setItem("accessToken", userData.accessToken);
-          dispatch(userSlice.actions.setUser(userData.user));
+          dispatch(
+            userSlice.actions.setUser({ ...userData.user, isAuth: true }),
+          );
         } catch (e) {
           console.log(e);
         }
@@ -56,9 +60,11 @@ export const authApi = createApi({
       onQueryStarted: async (body, { dispatch, queryFulfilled }) => {
         try {
           const userData = (await queryFulfilled).data;
-          dispatch(userSlice.actions.setUser(userData.user));
+          dispatch(
+            userSlice.actions.setUser({ ...userData.user, isAuth: true }),
+          );
         } catch (e) {
-          console.log(e);
+          dispatch(userSlice.actions.setUser({ isAuth: false }));
         }
       },
     }),
