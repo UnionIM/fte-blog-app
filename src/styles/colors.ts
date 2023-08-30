@@ -17,6 +17,7 @@ export enum DarkColors {
   red = "#991B1B",
   yellow = "#854D0E",
   black = "#1F2937",
+  gray = "#7C7C7C",
 }
 
 export type TColor = "blue" | "green" | "red" | "yellow" | "black";
