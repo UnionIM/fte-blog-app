@@ -1,18 +1,19 @@
 import React, { FormEvent, useState } from "react";
 import { Box, Flex, smallGray, Typography } from "../../styles";
 import DropZone from "../../components/DropZone/DropZone";
-import { Button, Input, Loader } from "../../components";
+import { Alert, Button, Input, Loader } from "../../components";
 import { postApi } from "../../service/PostService";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useNavigate } from "react-router-dom";
 import { getBase64 } from "../../service/utils/getBase64";
+import { errorHandler } from "../../service/utils/errorHandler";
 
 const CreatePost = () => {
   const [file, setFile] = useState<Blob[]>([]);
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
 
-  const [mutation, { isLoading }] = postApi.useCreatePostMutation();
+  const [mutation, { isLoading, error }] = postApi.useCreatePostMutation();
   const { user } = useAppSelector((state) => state.user);
   const nav = useNavigate();
 
@@ -20,14 +21,16 @@ const CreatePost = () => {
     e.preventDefault();
     if (user.id) {
       const base64 = await getBase64(file[0]);
-      await mutation({
+      const data = await mutation({
         title,
         description,
         authorId: user.id,
         image: typeof base64 === "string" ? base64 : null,
       });
+      if ("data" in data) {
+        nav("/");
+      }
     }
-    nav("/");
   };
 
   const resetHandler = async () => {
@@ -77,6 +80,12 @@ const CreatePost = () => {
               {isLoading ? <Loader color={"white"} size={6} /> : "Apply"}
             </Button>
           </Flex>
+          {error && (
+            <Alert
+              sx={{ margin: "18px 0 0 0" }}
+              message={errorHandler(error)?.message || "Unknown message"}
+            />
+          )}
         </Box>
       </form>
     </Box>
