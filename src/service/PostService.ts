@@ -12,7 +12,8 @@ export const postApi = createApi({
       query: () => ({
         url: `/all`,
       }),
-      providesTags: () => ["PostListUpdate"],
+      providesTags: () => ["Posts"],
+
     }),
     getPost: build.query<IPostData, string>({
       query: (id) => ({
@@ -34,7 +35,7 @@ export const postApi = createApi({
         method: "POST",
         body,
       }),
-      invalidatesTags: ["PostListUpdate"],
+      invalidatesTags: ["Posts"],
     }),
     updatePost: build.mutation<
       IPostData,
@@ -58,7 +59,7 @@ export const postApi = createApi({
         url: `/${postId}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["PostListUpdate"],
+      invalidatesTags: ["Posts"],
     }),
   }),
 });

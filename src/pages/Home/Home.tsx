@@ -1,25 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import img from "../../images/bitmap/home-page-img.png";
 import { h1, h2, Flex, Typography } from "../../styles";
 import { Button, PostList, Loader } from "../../components";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { TUser } from "../../models/TUser";
 import { StyledImg } from "./index";
 import { postApi } from "../../service/PostService";
 import { Link } from "react-router-dom";
 
 const Home = () => {
   const { user } = useAppSelector((state) => state.user);
-  const elementToScroll = useRef<HTMLDivElement>(null);
-  const [isAuth, setIsAuth] = useState<TUser | false>(false);
+  const elementToScroll = React.createRef<HTMLDivElement>();
 
   const { data: posts, isLoading } = postApi.useFetchPostsQuery(4);
-
-  useEffect(() => {
-    if (Object.values(user).length) {
-      setIsAuth(user);
-    }
-  }, [user]);
 
   const handleScrollTo = () => {
     if (elementToScroll) {
@@ -35,7 +27,7 @@ const Home = () => {
       >
         <div>
           <Typography styles={h1}>
-            {isAuth
+            {user.isAuth
               ? "Are you ready to read something new?"
               : "Welcome to BlogApp!"}
           </Typography>
@@ -54,11 +46,11 @@ const Home = () => {
           <Flex gap={11}>
             <Button
               variant={"contained"}
-              onClick={isAuth ? handleScrollTo : () => {}}
+              onClick={user.isAuth ? handleScrollTo : () => {}}
             >
               Let's start
             </Button>
-            {isAuth ? (
+            {user.isAuth ? (
               <Link to={"/posts/create"}>
                 <Button variant={"outlined"}>Create new post +</Button>
               </Link>
@@ -78,7 +70,7 @@ const Home = () => {
         Posts
       </Typography>
       {isLoading && <Loader />}
-      {posts && <PostList posts={posts} elementRef={elementToScroll} />}
+      {posts && <PostList posts={posts} ref={elementToScroll} />}
     </div>
   );
 };

@@ -4,4 +4,5 @@ export type TUser = Partial<{
   id: string;
   name: string;
   password: string;
+  isAuth: boolean;
 }>;

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { FC } from "react";
-import { Card } from "./index";
+import { Card } from "./styled";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
 import { IPostData } from "../../models/IPost";
